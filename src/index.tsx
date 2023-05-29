@@ -16,8 +16,8 @@ const App = () => {
     )
 }
 
-const Title = (props: TitleProps) => {
-    return <h1>Hello {props.title} compoment</h1>
+const Title = ({ title }: TitleProps) => {
+    return <h1>Hello {title} compoment</h1>
 }
 
 const Content = () => {
