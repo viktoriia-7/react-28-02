@@ -1,7 +1,7 @@
 import ProductList from 'components/Products/ProductList'
 
 type Props = {
-    addProductToCart: (count: number, pice: number) => void
+    addProductToCart: (id: number, count: number) => void
 }
 const Home = ({ addProductToCart }: Props) => {
     return (
