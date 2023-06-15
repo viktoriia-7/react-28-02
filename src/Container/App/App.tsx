@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom'
 import Home from 'pages/Home/Home'
 import CartPage from 'pages/Cart/CartPage'
 import { createContext } from 'react'
+import { omit } from 'lodash'
 
 type ProductsInCart = {
     [id: number]: number
@@ -14,6 +15,7 @@ type ProductsInCart = {
 
 type Context = {
     removeProductFromCart: (id: number) => void
+    changeProductQuantity: (id: number, count: number) => void
 }
 export const AppContext = createContext<Context | null>(null)
 
@@ -31,22 +33,27 @@ const App = () => {
     }
 
     const removeProductFromCart = (id: number) => {
-        setProductsInCart((prevState) => {
-            let prevProductsInCart = { ...prevState }
-            delete prevProductsInCart[id]
-            return prevProductsInCart
-        })
+        setProductsInCart((prevState) => omit(prevState, id))
     }
+
+    const changeProductQuantity = (id: number, count: number) => {
+        setProductsInCart((prevState) => ({
+            ...prevState,
+            [id]: count,
+        }))
+    }
+
     return (
         <StyledEngineProvider injectFirst>
             <AppContext.Provider
                 value={{
                     removeProductFromCart: removeProductFromCart,
+                    changeProductQuantity: changeProductQuantity,
                 }}
             >
                 <CssBaseline />
                 <Header productsInCart={productsInCart} />
-                
+
                 <Container
                     sx={{
                         padding: '40px 0',
