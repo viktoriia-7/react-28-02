@@ -7,7 +7,7 @@ type Props = {
 }
 const Quantity = ({ count, onDecrementClick, onIncrementClick }: Props) => {
     return (
-        <div className='="product-quantity'>
+        <div className="product-quantity">
             <Button
                 variant="outlined"
                 onClick={() => onDecrementClick()}
@@ -15,7 +15,9 @@ const Quantity = ({ count, onDecrementClick, onIncrementClick }: Props) => {
             >
                 -
             </Button>
+
             <TextField value={count} size="small" />
+
             <Button
                 variant="outlined"
                 onClick={() => onIncrementClick()}
